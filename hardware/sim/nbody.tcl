@@ -51,6 +51,8 @@ vlog -sv  +incdir+./ \
      ../shift_register.sv \
      ../getAccl.sv \
      ../nbody.sv \
+     ../display.sv \
+     ../display_sim/RAM_DISP.v \
      ../RAM.v \
      ../RAM2.v \
      nbodyTb.sv
