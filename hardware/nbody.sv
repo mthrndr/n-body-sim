@@ -484,4 +484,13 @@ module nbody #(
         .ay(ay)
     );
 
+
+// Assertion
+property done_must_be_in_state_rw();
+    @(posedge clk) (done |-> (state == SW_READ_WRITE));
+endproperty
+
+a_done_must_be_in_state_rw: assert property (done_must_be_in_state_rw);
+
+
 endmodule

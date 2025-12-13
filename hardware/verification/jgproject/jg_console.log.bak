@@ -1,0 +1,72 @@
+2025-12-13 00:24:56.661506 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.661531 (1625760) main____ INFO    Jasper version info
+2025-12-13 00:24:56.661534 (1625760) main____ INFO      tool      : Jasper 2024.06
+2025-12-13 00:24:56.661537 (1625760) main____ INFO      version   : 2024.06p002 64 bits
+2025-12-13 00:24:56.661539 (1625760) main____ INFO      build date: 2024.09.02 16:28:38 UTC
+2025-12-13 00:24:56.661540 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.661541 (1625760) main____ INFO    Runtime info:
+2025-12-13 00:24:56.661543 (1625760) main____ INFO      platform  : Linux 4.18.0-553.89.1.el8_10.x86_64 x86_64
+2025-12-13 00:24:56.661546 (1625760) main____ INFO      hostname  : micro16
+2025-12-13 00:24:56.661548 (1625760) main____ INFO      pid       : 1625760
+2025-12-13 00:24:56.661549 (1625760) main____ INFO      arguments : '-style' 'windows' '-fpv' 'nbody.tcl'
+2025-12-13 00:24:56.661551 (1625760) main____ INFO      locale    : UTF-8
+2025-12-13 00:24:56.661552 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.661553 (1625760) main____ INFO    System resource limits info:
+2025-12-13 00:24:56.661555 (1625760) main____ INFO      virtual memory: unlimited
+2025-12-13 00:24:56.661556 (1625760) main____ INFO      cpu time      : unlimited
+2025-12-13 00:24:56.661559 (1625760) main____ INFO      processes     : 126060
+2025-12-13 00:24:56.661562 (1625760) main____ INFO      stack size    : 8388608 B
+2025-12-13 00:24:56.661564 (1625760) main____ INFO      core file size: 0 B
+2025-12-13 00:24:56.661566 (1625760) main____ INFO      open files    : 1024
+2025-12-13 00:24:56.661567 (1625760) main____ INFO      file size     : unlimited
+2025-12-13 00:24:56.661568 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.661569 (1625760) main____ INFO    Memory statistics:
+2025-12-13 00:24:56.661571 (1625760) main____ INFO      total physical memory  : 32333532 kB
+2025-12-13 00:24:56.661572 (1625760) main____ INFO      free physical memory   : 11744192 kB
+2025-12-13 00:24:56.661574 (1625760) main____ INFO      committed address space: 21721084 kB
+2025-12-13 00:24:56.661575 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.661976 (1625760) main____ INFO    Important environment variables:
+2025-12-13 00:24:56.661981 (1625760) main____ INFO      CDS_LIC_FILE       : '5280@bioeelincad.ee.columbia.edu'
+2025-12-13 00:24:56.661983 (1625760) main____ INFO      CDS_LOAD_ENV       : 'CWD'
+2025-12-13 00:24:56.661984 (1625760) main____ INFO      DISPLAY            : 'localhost:10.0'
+2025-12-13 00:24:56.661985 (1625760) main____ INFO      JASPER_CPU_CHECK   : '1'
+2025-12-13 00:24:56.661987 (1625760) main____ INFO      JASPER_INSTALL_DIR : '/tools/cadence/jasper_2024.06p002'
+2025-12-13 00:24:56.661988 (1625760) main____ INFO      JASPER_KERNEL_CHECK: '1'
+2025-12-13 00:24:56.661989 (1625760) main____ INFO      JASPER_OS_CHECK    : '1'
+2025-12-13 00:24:56.661991 (1625760) main____ INFO      LANG               : 'en_US.UTF-8'
+2025-12-13 00:24:56.661992 (1625760) main____ INFO      LC_ADDRESS         : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.661993 (1625760) main____ INFO      LC_IDENTIFICATION  : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.661995 (1625760) main____ INFO      LC_MEASUREMENT     : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.661996 (1625760) main____ INFO      LC_MONETARY        : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.661997 (1625760) main____ INFO      LC_NAME            : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.661998 (1625760) main____ INFO      LC_NUMERIC         : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.662000 (1625760) main____ INFO      LC_PAPER           : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.662001 (1625760) main____ INFO      LC_TELEPHONE       : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.662002 (1625760) main____ INFO      LC_TIME            : 'fr_FR.UTF-8'
+2025-12-13 00:24:56.662003 (1625760) main____ INFO    ----------------------------------------
+2025-12-13 00:24:56.662276 (1625760) lic_core INFO    Initializing license system ...
+2025-12-13 00:24:56.671255 (1625760) lic_core INFO    ... license system initialized.
+2025-12-13 00:24:56.788901 (1625760) lic__man INFO    Claim 'main' for <ui>.
+2025-12-13 00:24:56.788913 (1625760) lic_core INFO    (1) checking out 'jasper_interactive' ...
+2025-12-13 00:24:56.799630 (1625760) lic_core INFO    ... (1) checkout succeeded
+2025-12-13 00:24:56.799645 (1625760) lic__man INFO    Claim 'fpv' for <ui>.
+2025-12-13 00:24:56.799650 (1625760) lic_core INFO    (2) checking out 'jasper_fpv' ...
+2025-12-13 00:24:56.802834 (1625760) lic_core INFO    ... (2) checkout failed (error: -5) ("FLEXnet ERROR(-5, 0, 0): No such feature exists.")
+2025-12-13 00:24:56.802843 (1625760) lic_core INFO    (3) checking out 'jasper_fao' ...
+2025-12-13 00:24:56.811532 (1625760) lic_core INFO    ... (3) checkout succeeded
+2025-12-13 00:24:56.811739 (1625760) main____ INFO    Tool inactivity delay is 480000 ms.
+2025-12-13 00:24:57.672427 (1625760) lic__man INFO    Claim 'fpv' for <ui>.
+2025-12-13 00:24:57.936249 (1625760) lic__man INFO    Unclaim 'fpv' for <ui>.
+2025-12-13 00:24:57.936262 (1625760) lic__man INFO    Claim 'fpv' for <ui>.
+2025-12-13 00:24:57.956037 (1625760) session_ INFO    Starting analysis session with session id 'session_0' (launcher: <local>) ...
+2025-12-13 00:24:57.957191 (1625760) session_ INFO    Analysis session with session id 'session_0' started (pid: 1625782)
+2025-12-13 00:25:00.397478 (1625760) session_ INFO    Analysis session 'session_0' connected to the console (host: 127.0.0.1:44896)
+2025-12-13 00:25:00.837353 (1625760) main____ INFO    Releasing console memory by request of analysis session 'session_0'.
+2025-12-13 00:25:00.837623 (1625760) lic__man INFO    Unclaim everything for 'session_0'.
+2025-12-13 00:25:01.734496 (1625760) lic__man INFO    Unclaim everything for 'session_0'.
+2025-12-13 00:25:02.019286 (1625760) lic__man INFO    Unclaim everything for 'session_0/prove-0'.
+2025-12-13 00:25:11.143382 (1625760) main____ INFO    About to exit: requested from GUI
+2025-12-13 00:25:11.355617 (1625760) session_ INFO    Analysis session 'session_0' disconnected.
+2025-12-13 00:25:11.357901 (1625760) lic_core INFO    (1) checkin jasper_interactive
+2025-12-13 00:25:11.359192 (1625760) lic_core INFO    (3) checkin jasper_fao
+2025-12-13 00:25:11.359845 (1625760) main____ INFO    Exiting with status 0.
