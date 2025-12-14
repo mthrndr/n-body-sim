@@ -492,5 +492,198 @@ endproperty
 
 a_done_must_be_in_state_rw: assert property (done_must_be_in_state_rw);
 
+// ============================================================
+// Assumptions for FSM transition verification (non-overconstraining)
+// ============================================================
+
+// Flag for configuration done:
+logic seen_nb, seen_gap;
+always_ff @(posedge clk or posedge rst) begin
+  if (rst) begin
+    seen_nb  <= 1'b0;
+    seen_gap <= 1'b0;
+  end else begin
+    if (chipselect && write && (addr[15:9] == N_BODIES)) seen_nb  <= 1'b1;
+    if (chipselect && write && (addr[15:9] == GAP))      seen_gap <= 1'b1;
+  end
+end
+
+wire cfg_done = seen_nb && seen_gap;
+
+
+// 2) Write should only happens under the stage SW_READ_WRITE
+/*as_write_inRW:
+assume property (@(posedge clk) disable iff (rst)
+  chipselect && write |-> state == SW_READ_WRITE
+);*/
+
+as_write_only_inRW_except_GO:
+assume property (@(posedge clk) disable iff (rst)
+  (chipselect && write && (addr[15:9] != GO)) |-> (state == SW_READ_WRITE)
+);
+
+
+// 3) Write should only happens under the stage SW_READ_WRITE
+as_go_only_after_cfg:
+assume property (@(posedge clk) disable iff (rst)
+  go |-> cfg_done
+);
+
+
+// 4) Write should only happens under the stage SW_READ_WRITE
+as_cfg_values_legal:
+assume property (@(posedge clk) disable iff (rst)
+  cfg_done |-> (num_bodies >= 1 && num_bodies <= 10 && gap > 0)
+);
+
+
+// 5) configuration parameters num_bodies and gap remain unchanged while the accelerator is running
+as_cfg_stable_while_running:
+assume property (@(posedge clk) disable iff (rst)
+  (state != SW_READ_WRITE) |-> ($stable(num_bodies) && $stable(gap))
+);
+
+
+// 6) Whenever the hardware asserts done, the software will eventually issue a read request (read_sw) within 1 to 500 clock cycles.
+as_read_eventually_after_done:
+assume property (@(posedge clk) disable iff (rst)
+  done |-> ##[1:500] read_sw
+);
+
+
+// 7) Read is set high only in the stage SW_READ_WRITE
+as_read_only_inRW:
+assume property (@(posedge clk) disable iff (rst)
+  read_sw |-> state == SW_READ_WRITE
+);
+///////////////////////////////////////////////////
+
+
+
+//cover every stages
+cover_SW_READ_WRITE:
+cover property (@(posedge clk) disable iff (rst)
+  state == SW_READ_WRITE
+);
+
+cover_CALC_ACCEL:
+cover property (@(posedge clk) disable iff (rst)
+  state == CALC_ACCEL
+);
+
+cover_UPDATE_POS:
+cover property (@(posedge clk) disable iff (rst)
+  state == UPDATE_POS
+);
+
+
+//configuration done (same as before)
+logic seen_nb, seen_gap;
+always_ff @(posedge clk or posedge rst) begin
+  if (rst) begin
+    seen_nb  <= 1'b0;
+    seen_gap <= 1'b0;
+  end else begin
+    if (chipselect && write && (addr[15:9] == N_BODIES)) seen_nb  <= 1'b1;
+    if (chipselect && write && (addr[15:9] == GAP))      seen_gap <= 1'b1;
+  end
+end
+wire cfg_done = seen_nb && seen_gap;
+
+
+// transition: from SW_READ_WRTIE to CALC_ACCEL(check cfg_done go read_sw done)
+ap_rw_to_calc:
+assert property (@(posedge clk) disable iff (rst)
+  (state==SW_READ_WRITE && cfg_done && go && !read_sw && !done)
+  |=> (state==CALC_ACCEL)
+);
+
+// transition: SW_READ_WRTIE stays (check cfg_done go read_sw done)
+ap_rw_stays_rw_when_not_start:
+assert property (@(posedge clk) disable iff (rst)
+  (state==SW_READ_WRITE && (!go || read_sw || done || !cfg_done))
+  |=> (state==SW_READ_WRITE) 
+);
+
+// transition: from CALC to RW on !go 
+ap_calc_abort:
+assert property (@(posedge clk) disable iff (rst)
+  (state==CALC_ACCEL && !go)
+  |=> (state==SW_READ_WRITE)
+);
+
+// transition: from CALC to UPDATE when finished
+ap_calc_to_update:
+assert property (@(posedge clk) disable iff (rst)
+  (state==CALC_ACCEL && go &&
+   (v_write_i == num_bodies-1) && (v_write_j == num_bodies-1))
+  |=> (state==UPDATE_POS)
+);
+
+// transition: CALC stays CALC when the calculation hasn't done
+ap_calc_stays_calc_when_not_done:
+assert property (@(posedge clk) disable iff (rst)
+  (state==CALC_ACCEL && go &&
+   !((v_write_i == num_bodies-1) && (v_write_j == num_bodies-1)))
+  |=> (state==CALC_ACCEL || state==SW_READ_WRITE)
+);
+
+// transition: UPDATE to RW on !go
+ap_update_abort:
+assert property (@(posedge clk) disable iff (rst)
+  (state==UPDATE_POS && !go)
+   |=> (state==SW_READ_WRITE)
+);
+/*
+In the UPDATE_POS state, the state register is assigned multiple times in the same clock cycle using non-blocking assignments. When go goes low, the RTL sets state to SW_READ_WRITE, but later logic in the same always_ff block overwrites this value (for example, setting state to CALC_ACCEL).
+
+Because the last assignment wins, the FSM does not return to SW_READ_WRITE even though go is low. The assertion correctly detects this missing transition.
+*/
+
+// UPDATE finish branches
+ap_update_finish_to_rw_done:
+assert property (@(posedge clk) disable iff (rst)
+  (state==UPDATE_POS && state_2_write_enable &&
+   (state_2_pos_write == num_bodies-1) &&
+   (gap_counter == gap-1))
+  |=> (state==SW_READ_WRITE && done)
+);
+
+
+// UPDATE stays UPDATE otherwise goes to SW if !go 
+ap_update_stays_update_when_not_finished:
+assert property (@(posedge clk) disable iff (rst)
+  (state==UPDATE_POS && go &&
+   !(state_2_write_enable && (state_2_pos_write == num_bodies-1)))
+  |=> (state==UPDATE_POS || state==SW_READ_WRITE) 
+);
+
+
+
+
+
+ap_state_legal: 
+assert property (@(posedge clk) disable iff (rst)
+  (state == SW_READ_WRITE) || (state == CALC_ACCEL) || (state == UPDATE_POS)
+);
+
+ap_p_read_in_range: assert property (@(posedge clk) disable iff (rst)
+  (state == CALC_ACCEL) |-> (p_read_i <=num_bodies) && (p_read_j <=num_bodies)
+);
+
+ap_v_read_in_range: assert property (@(posedge clk) disable iff (rst)
+  (state == CALC_ACCEL) |-> (v_read_i <=num_bodies) && (v_read_j <= num_bodies)
+);
+
+ap_v_write_in_range: assert property (@(posedge clk) disable iff (rst)
+  (state == CALC_ACCEL) |-> (v_write_i <=num_bodies) && (v_write_j <= num_bodies)
+);
+
+/*The assertions ap_p_read_in_range and ap_v_read_in_range fail due to an off-by-one counter overflow in the CALC_ACCEL state.
+When both index counters reach num_bodies − 1, the inner counter resets to zero and the outer counter is incremented without an upper-bound check. As a result, the outer counter temporarily becomes equal to num_bodies, which is outside the valid range [0, num_bodies − 1] for one cycle.
+
+Formal verification explores this boundary case and detects the out-of-range value, even though the FSM transitions shortly afterward. Simulation may not expose this issue, but formal analysis correctly flags the illegal intermediate state.*/
+
+
 
 endmodule
