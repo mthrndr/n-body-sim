@@ -13,6 +13,7 @@ R0
 R0
 R0
 R0
+R0
 !s11f MIXED_VERSIONS
 R0
 R0
@@ -24,135 +25,135 @@ R0
 cModel Technology
 Z1 d/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim
 T_opt
-Z2 !s110 1746740325
+!s110 1746740325
 V<EQ4LUjVd:[2dUjHGeO451
-Z3 04 4 4 work Mult fast 0
-Z4 04 7 4 work nbodyTb fast 0
+Z2 04 4 4 work Mult fast 0
+Z3 04 7 4 work nbodyTb fast 0
 =1-000ae431a4f1-681d2465-7ee30-b7d8
-Z5 !s124 OEM10X5093 
-o-quiet -auto_acc_if_foreign -work work -L altera_mf_ver -L lpm_ver -L work -L work_lib -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L altera_mf_ver -L lpm_ver -suppress 14408,14408 +acc=npr
+Z4 !s124 OEM10X5093 
+Z5 o-quiet -auto_acc_if_foreign -work work -L altera_mf_ver -L lpm_ver -L work -L work_lib -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L altera_mf_ver -L lpm_ver -suppress 14408,14408 +acc=npr
 Z6 tCvgOpt 0
 n@_opt
 Z7 OL;O;2021.2;73
+R1
 T_opt1
-Z8 !s110 1746729530
-VE03QUoleVPjgIUiQY]YCZ2
+Z8 !s110 1766035500
+V]mR[AAMiM30IZMj>BBXNV3
+R2
 R3
-04 9 4 work getAcclTb fast 0
-=6-000ae431a4f1-681cfa3a-780c3-8933
-!s124 OEM10U3431 
-o-quiet -auto_acc_if_foreign -work work -L altera_mf_ver -L lpm_ver -L work -L work_lib -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L altera_mf_ver -L lpm_ver
+=1-000ae431a4f1-6943902c-52961-89e7
+!s124 OEM10X5002 
+R5
 R6
 n@_opt1
 R7
-R1
 T_opt2
 !s110 1746738913
 VlWD9fJUUk]31Ana8maK3a3
+R2
 R3
-R4
 =1-000ae431a4f1-681d1ee0-aedba-b135
-R5
+R4
 o-quiet -auto_acc_if_foreign -work work -L altera_mf_ver -L lpm_ver -L work -L work_lib -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cyclonev_ver -L cyclonev_hssi_ver -L cyclonev_pcie_hip_ver -L altera_mf_ver -L lpm_ver -suppress 14408,14408
 R6
 n@_opt2
 R7
 R1
 vAddSub
-Z9 !s110 1746740324
+Z9 !s110 1766035499
 !i10b 1
-!s100 AY0elcjdX]cn[:OiM9YF_1
-IE[j6CP<EU[WIG5O3if1o11
-R1
-Z10 w1745522024
+!s100 UY7NjRQ92l=zDcPMe6nG[2
+I0<`9oikfQc?4:CV_l[miz1
+Z10 d/home/user/Documents/Columbia/FormalVerification/n-body-sim/hardware/sim
+Z11 w1765565915
 8../AddSub_sim/AddSub.vo
 F../AddSub_sim/AddSub.vo
-!i122 128
-L0 32 19569
-Z11 VDg1SIo80bB@j0V0VzS_@n1
-Z12 OL;L;2021.2;73
+!i122 132
+L0 32 13636
+Z12 VDg1SIo80bB@j0V0VzS_@n1
+Z13 OL;L;2021.2;73
 r1
 !s85 0
 31
-Z13 !s108 1746740324.000000
+Z14 !s108 1766035499.000000
 !s107 ../AddSub_sim/AddSub.vo|
 !s90 -F=/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim/vlog.opt|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv|-F=|-reportprogress|300|../AddSub_sim/AddSub.vo|
 !i113 0
-Z14 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z15 !s92 -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z15 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z16 !s92 -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R6
 n@add@sub
 vALTERA_DEVICE_FAMILIES
-Z16 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-R2
+Z17 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R8
 !i10b 1
 !s100 n0C`oJ7P^LmmPQ@MLEeiH2
 I3?A7:kPfPM:fW:?N]f<l12
 S1
-R1
-Z17 w1634846479
-Z18 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v
-Z19 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v
-!i122 130
+R10
+Z18 w1634846479
+Z19 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v
+Z20 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v
+!i122 134
 L0 1433 896
-R11
 R12
+R13
 r1
 !s85 0
 31
-Z20 !s108 1746740325.000000
-Z21 !s107 nbodyTb.sv|../RAM2.v|../RAM.v|../nbody.sv|../getAccl.sv|../shift_register.sv|
-Z22 !s90 -F=/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim/vlog.opt|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv|-F=|-reportprogress|300|-sv|+incdir+./|../shift_register.sv|../getAccl.sv|../nbody.sv|../RAM.v|../RAM2.v|nbodyTb.sv|
+R14
+Z21 !s107 nbodyTb.sv|../RAM2.v|../RAM.v|../display_sim/RAM_DISP.v|../display.sv|../nbody.sv|../getAccl.sv|../shift_register.sv|
+Z22 !s90 -F=/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim/vlog.opt|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv|-F=|-reportprogress|300|-sv|+incdir+./|../shift_register.sv|../getAccl.sv|../nbody.sv|../display.sv|../display_sim/RAM_DISP.v|../RAM.v|../RAM2.v|nbodyTb.sv|
 !i113 0
 Z23 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 Z24 !s92 -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v -v /home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv -sv +incdir+./ -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R6
 n@a@l@t@e@r@a_@d@e@v@i@c@e_@f@a@m@i@l@i@e@s
 vALTERA_LNSIM_MEMORY_INITIALIZATION
-R16
-R2
+R17
+R9
 !i10b 1
 !s100 GKK=nYZ5FDLIJJEf`5gYC1
 IbJAY4A^67BzNd=kVYcD0>3
 S1
-R1
+R10
 Z25 w1634846470
 Z26 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv
 Z27 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv
-!i122 129
+!i122 133
 L0 19197 1262
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 Z28 !s107 ../InvSqrt_sim/InvSqrt.vo|
 Z29 !s90 -F=/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim/vlog.opt|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv|-F=|-reportprogress|300|../InvSqrt_sim/InvSqrt.vo|
 !i113 0
-R14
 R15
+R16
 R6
 n@a@l@t@e@r@a_@l@n@s@i@m_@m@e@m@o@r@y_@i@n@i@t@i@a@l@i@z@a@t@i@o@n
 vALTERA_MF_MEMORY_INITIALIZATION
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 JA^IE2:V7OY6d^MTUVcnS2
 I@I>EzA1j9oKl45`<e0TBf1
 S1
-R1
-R17
+R10
 R18
 R19
-!i122 130
+R20
+!i122 134
 L0 72 1219
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -161,49 +162,49 @@ R24
 R6
 n@a@l@t@e@r@a_@m@f_@m@e@m@o@r@y_@i@n@i@t@i@a@l@i@z@a@t@i@o@n
 valtera_syncram
-R16
-R2
+R17
+R9
 !i10b 1
 !s100 @d7zci1EBGWT`k0D6]_711
 Ik[XCnR4RJcKT2VWKl6T_D3
 S1
-R1
+R10
 R25
 R26
 R27
-!i122 129
+!i122 133
 L0 16238 2865
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 valtera_syncram_derived
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 OK<KG3oiG2KhiTnGDelJ00
 Ik=D>2@K16m0zNHhK4gCmk2
 S1
-R1
-R17
+R10
 R18
 R19
-!i122 130
+R20
+!i122 134
 L0 31874 2834
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -211,24 +212,24 @@ R23
 R24
 R6
 valtera_syncram_derived_forwarding_logic
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 TAQb5Ec]IPTB8PokQziKg1
 I2D]bgOf6H0;MCC^=f9fXX0
 S1
-R1
-R17
+R10
 R18
 R19
-!i122 130
+R20
+!i122 134
 L0 34709 62
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -236,49 +237,49 @@ R23
 R24
 R6
 valtera_syncram_forwarding_logic
-R16
-R2
+R17
+R9
 !i10b 1
 !s100 MzjGfaNWgfQ95Eo3LDaCU2
 INohVB_cddElhhiJPR];nU2
 S1
-R1
+R10
 R25
 R26
 R27
-!i122 129
+!i122 133
 L0 19104 62
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 valtsyncram
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 R3]>AD40FzNCX68PaiS<f1
 Ijn@7RiFZ52Q=XXXhi0KzL2
 S1
-R1
-R17
+R10
 R18
 R19
-!i122 130
+R20
+!i122 134
 L0 47592 293
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -286,49 +287,75 @@ R23
 R24
 R6
 valtsyncram_body
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 BKiSJGh3Wg[];Y@FX2QBc2
 IIXGgob[mYQLzc9f7g_ko91
 S1
-R1
-R17
+R10
 R18
 R19
-!i122 130
+R20
+!i122 134
 L0 47886 2885
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
 R23
 R24
 R6
-vgetAccl
-R16
-R2
+vDisplay
+R17
+R8
 !i10b 1
-!s100 a_kl9mlj0h5L7zAmO9OJS3
-IT5<oBF[^=Z[AQ6YL1Mz^N3
+!s100 ;[l318?o6Y?HK@jZ_Ii3<1
+IkOcoFIEPM[6MB1fbG87Q?2
 S1
-R1
-w1746554742
-8../getAccl.sv
-F../getAccl.sv
-!i122 130
-L0 8 156
+R10
 R11
+Z30 8../display.sv
+Z31 F../display.sv
+!i122 134
+L0 17 57
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
+R21
+R22
+!i113 0
+R23
+R24
+R6
+n@display
+vgetAccl
+R17
+R8
+!i10b 1
+!s100 z[7TODJTNFUAnEO7APgOb2
+I`f4D4N_<4?H:FDnP72<L_3
+S1
+R10
+R11
+8../getAccl.sv
+F../getAccl.sv
+!i122 134
+L0 8 157
+R12
+R13
+r1
+!s85 0
+31
+R14
 R21
 R22
 !i113 0
@@ -337,8 +364,8 @@ R24
 R6
 nget@accl
 vgetAcclTb
-R16
-R8
+R17
+!s110 1746729530
 !i10b 1
 !s100 l5PHT1i]Qg_jPBnLM2OY=3
 IMNFR6XkT=?eC8eIFWHcFU1
@@ -349,8 +376,8 @@ w1746638517
 FgetAcclTb.sv
 !i122 42
 L0 3 104
-R11
 R12
+R13
 r1
 !s85 0
 31
@@ -363,142 +390,142 @@ R24
 R6
 nget@accl@tb
 vInvSqrt
-R2
+R9
 !i10b 1
-!s100 gdk<ZjAA:Y4?W[=77RZTL0
-IHmLH]T=1^AibQhXzJG02I3
-R1
+!s100 QO0i9j56_LCf`f0ZzdC`O0
+I_Fa``Xc0REkmCS0cVIg[52
 R10
+R11
 8../InvSqrt_sim/InvSqrt.vo
 F../InvSqrt_sim/InvSqrt.vo
-!i122 129
-L0 32 13101
-R11
+!i122 133
+L0 32 9545
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 n@inv@sqrt
 vlpm_add_sub
-R2
+R9
 !i10b 1
 !s100 `ljXYWVcL=ZNbk^CME;ki0
 IC]En@O:3AiENLJcCAhg8D0
-R1
+R10
 R25
-Z30 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v
-Z31 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v
-!i122 129
+Z32 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v
+Z33 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v
+!i122 133
 L0 2606 179
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 vLPM_HINT_EVALUATION
-R2
+R9
 !i10b 1
 !s100 Uhn33VV^6^[1B97U1N67O3
 IBX0D_ll96=f2745`V3EVL0
-R1
+R10
 R25
-R30
-R31
-!i122 129
+R32
+R33
+!i122 133
 L0 1257 105
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 n@l@p@m_@h@i@n@t_@e@v@a@l@u@a@t@i@o@n
 vlpm_mult
-R2
+R9
 !i10b 1
 !s100 UWHDm@ED4YZCL?QVh9Y]Q1
 IOSN8Cz6k:Aii]PlN4cW0Y3
-R1
+R10
 R25
-R30
-R31
-!i122 129
+R32
+R33
+!i122 133
 L0 2986 259
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 vMult
 R9
 !i10b 1
-!s100 Vm2fL5G;i809gcj38AI8J3
-I6j4UL^4ZG2>d5oW@j50V11
-R1
-w1746568859
+!s100 XaM5SMUej27JS0lB@gPOi2
+ITB_di>O`Y7zFMHaHPTJ[f0
+R10
+R11
 8../Mult_sim/Mult.vo
 F../Mult_sim/Mult.vo
-!i122 127
-L0 32 6515
-R11
+!i122 131
+L0 32 3649
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 !s107 ../Mult_sim/Mult.vo|
 !s90 -F=/home/user/Documents/Columbia/EmbeddedSystems/EmbeddedFinalProject/hardware/sim/vlog.opt|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/220model.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_mf.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v|-v|/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/altera_lnsim.sv|-F=|-reportprogress|300|../Mult_sim/Mult.vo|
 !i113 0
-R14
 R15
+R16
 R6
 n@mult
 vnbody
-R16
-R2
+R17
+R8
 !i10b 1
-!s100 ]IN;T@n@]R=NkWYGeo?NB1
-IH9KTD?bXTQT7n2b7Z;hTa0
+!s100 LC5;zjY0cKG3L0z`DJTNc3
+IeNS;OADf6]fk>`^^k<Ugn2
 S1
-R1
-w1746740318
+R10
+w1766035032
 8../nbody.sv
 F../nbody.sv
-!i122 130
-L0 22 397
-R11
+!i122 134
+L0 31 678
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -506,7 +533,7 @@ R23
 R24
 R6
 vnBodyTb
-R16
+R17
 !s110 1746734675
 !i10b 1
 !s100 mkJ<DcDoPYM=5762l<j>I3
@@ -514,12 +541,12 @@ ILG6_0<0HMnZI]3SfWRC[P2
 S1
 R1
 w1746734672
-Z32 8nbodyTb.sv
-Z33 FnbodyTb.sv
+Z34 8nbodyTb.sv
+Z35 FnbodyTb.sv
 !i122 70
 L0 2 157
-R11
 R12
+R13
 r1
 !s85 0
 31
@@ -532,24 +559,24 @@ R24
 R6
 nn@body@tb
 vnbodyTb
-R16
-R2
+R17
+R8
 !i10b 1
-!s100 :XDKS>2P@Q>Fmk8^CW<6N3
-Io6j@`F3NG?26N;g_3j`BS1
+!s100 NP0JQkF@>PGh8LOA4maL73
+IZmi0fl]FJPfEB;9D4[ODU2
 S1
-R1
-w1746739362
-R32
-R33
-!i122 130
-L0 2 167
+R10
 R11
+R34
+R35
+!i122 134
+L0 2 306
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -558,93 +585,93 @@ R24
 R6
 nnbody@tb
 voper_add
-R2
+R9
 !i10b 1
 !s100 O1[MdMm`LzFKDd_KWZ:KH0
 IoWooB_cf0fW8J?;4CbVPm1
-R1
-Z34 w1634872000
-Z35 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v
-Z36 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v
-!i122 129
+R10
+Z36 w1634872000
+Z37 8/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v
+Z38 F/home/user/intelFPGA_lite/21.1/quartus/eda/sim_lib/sgate.v
+!i122 133
 L0 19 74
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 voper_mult
-R2
+R9
 !i10b 1
 !s100 l@LzhVj]UK[MRObOPPOS53
 IFN^n]_NYLgiN6kOenA_F?0
-R1
-R34
-R35
+R10
 R36
-!i122 129
+R37
+R38
+!i122 133
 L0 275 68
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 voper_mux
-R2
+R9
 !i10b 1
 !s100 Q6kD3Z2lE:mjljGI_mGIj1
 IF6LH<Z[dfTYCQKCkgYLmn3
-R1
-R34
-R35
+R10
 R36
-!i122 129
+R37
+R38
+!i122 133
 L0 946 42
-R11
 R12
+R13
 r1
 !s85 0
 31
-R13
+R14
 R28
 R29
 !i113 0
-R14
 R15
+R16
 R6
 vRAM
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 O>W?n=[RJcA55Jb;PjZ601
 IfWi0nR3[ZgSRBN>_iIR6`1
 S1
-R1
-w1746558622
+R10
+R11
 8../RAM.v
 F../RAM.v
-!i122 130
-L0 40 73
-R11
+!i122 134
+Z39 L0 40 73
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -653,24 +680,24 @@ R24
 R6
 n@r@a@m
 vRAM2
-R16
-R2
+R17
+R8
 !i10b 1
 !s100 <KhVYRij;5>bT]VcSiR=G3
 IBiU6OmfddM3z@bPPdX=T]1
 S1
-R1
-w1746411422
+R10
+R11
 8../RAM2.v
 F../RAM2.v
-!i122 130
+!i122 134
 L0 40 89
-R11
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
 R21
 R22
 !i113 0
@@ -678,25 +705,76 @@ R23
 R24
 R6
 n@r@a@m2
-vshift_register
-R16
-R2
+vRAM_DISP
+R17
+R8
 !i10b 1
-!s100 R<9VI<:]a7hoMOI0L@H3J1
-IE17RR4CHW_4fPiF=P]@a31
+!s100 zoOCn[[Xb<kP]igD_<JUh1
+IeY3@2M7h1;SWl0RX`_WJk2
 S1
-R1
-w1746553982
-8../shift_register.sv
-F../shift_register.sv
-!i122 130
-L0 1 32
+R10
 R11
+8../display_sim/RAM_DISP.v
+F../display_sim/RAM_DISP.v
+!i122 134
+R39
 R12
+R13
 r1
 !s85 0
 31
-R20
+R14
+R21
+R22
+!i113 0
+R23
+R24
+R6
+n@r@a@m_@d@i@s@p
+vshift_register
+R17
+R8
+!i10b 1
+!s100 U4a^gJDEGnPOV<_CVKRRi3
+II4P>?0b_YWh:R][45XSYS0
+S1
+R10
+w1766035079
+8../shift_register.sv
+F../shift_register.sv
+!i122 134
+L0 1 70
+R12
+R13
+r1
+!s85 0
+31
+R14
+R21
+R22
+!i113 0
+R23
+R24
+R6
+vvga_counters
+R17
+R8
+!i10b 1
+!s100 ]6<5PTVPMg2=:z1XM7E613
+IlBMF4YD^5eP^]m@djB=[S3
+S1
+R10
+R11
+R30
+R31
+!i122 134
+L0 75 77
+R12
+R13
+r1
+!s85 0
+31
+R14
 R21
 R22
 !i113 0

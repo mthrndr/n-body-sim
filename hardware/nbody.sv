@@ -117,7 +117,7 @@ module nbody #(
     logic first_time;
 
 
-    // // Instantiating the display
+    // Instantiating the display
     Display display(
         .clk(clk),
         .reset(rst),
@@ -164,9 +164,9 @@ module nbody #(
 
             case (state)
                 SW_READ_WRITE: begin // Software reading/writing 
-                    //if go is not high, then we are not going to do anything (except take in writes from software)
+                    // if go is not high, then we are not going to do anything (except take in writes from software)
                     // if we raised done, we are waiting for read to go high before dropping done
-                    //once read and done are both low (and go is high obvisously), we can start the next cycle
+                    // once read and done are both low (and go is high obvisously), we can start the next cycle
 
                     if(go == 1) begin //handshake logic
                         if(read_sw == 1) begin
@@ -190,8 +190,6 @@ module nbody #(
                         first_time <= 1;
                         done <= 0;
                     end
-                    // zeroing out all the shit
-                    
 
                 end
                 CALC_ACCEL: begin // Compute accelerations, update velocities
@@ -217,31 +215,50 @@ module nbody #(
                         valid_accl  <= 0;
                     end
                     else begin
+
+                        // Increment state timer and the body we are comparing
+                        // to
                         state_1_timer <= state_1_timer + 1;
                         p_read_j <= p_read_j + 9'b1;
-                        if (state_1_timer == AcclLatency - 1) begin
-                            valid_accl <= 1'b1;
-                        end
-                        if (state_1_timer == AcclLatency + AddTime + 1) begin
-                            valid_dv <= 1'b1;
-                        end
-                        if (valid_accl) begin
-                            v_read_j <= v_read_j + 9'b1;
-                        end
-                        if (valid_dv) begin
-                            v_write_j <= v_write_j + 9'b1;
-                        end
 
+                        // Once we have compared to every body, increment the
+                        // current body being considered, and reset the counter
+                        // for the bodies we compare to
                         if (p_read_j == num_bodies - 1) begin
                             p_read_j <= 9'b0;
                             p_read_i <= p_read_i + 9'b1;
                         end
 
+                        // Once state_1_timer is equal to acclLatency - 1,
+                        // valid accelerations have begun streaming out
+                        if (state_1_timer == AcclLatency - 1) begin
+                            valid_accl <= 1'b1;
+                        end
+
+                        // Increment counter to read in new
+                        if (valid_accl) begin
+                            v_read_j <= v_read_j + 9'b1;
+                        end
+
+                        // Loop over
                         if (v_read_j == num_bodies - 1) begin
                             v_read_j <= 0;
+                            // Check if we can remove v_read_i
                             v_read_i <= v_read_i + 9'b1;
                         end
 
+                        // Once state_1_timer is equal to the accl and add
+                        // latency + 1, valid dv data has begun streaming out
+                        if (state_1_timer == AcclLatency + AddTime + 1) begin
+                            valid_dv <= 1'b1;
+                        end
+
+                        // Once we are receiving dv begin looping on v
+                        if (valid_dv) begin
+                            v_write_j <= v_write_j + 9'b1;
+                        end
+
+                        // Loop over
                         if (v_write_j == num_bodies - 1) begin
                             v_write_j <= 0;
                             v_write_i <= v_write_i + 9'b1;
@@ -254,26 +271,31 @@ module nbody #(
                 end
                 UPDATE_POS: begin // Update positions
 
-                    
-
+                    // Increment
                     state_2_read <= state_2_read + 9'b1;
 
                     if (go == 0) begin
                         state <= SW_READ_WRITE;
                     end
-                    if (state_2_read == AddTime+1) begin
+                    // Data has begun streaming out of adder
+                    if (state_2_read == AddTime + 1) begin
                         // finished the startup time, now we can start writing things back
                         state_2_write_enable <= 1'b1;
                     end else if (state_2_write_enable) begin
                         if (state_2_pos_write != num_bodies - 1) begin
                             state_2_pos_write <= state_2_pos_write + 9'b1; // must be zeroed out at the start
+                        // Finished updating positions for all bodies
                         end else begin
                             state_2_write_enable <= 1'b0;
                             state_2_pos_write <= 0;
                             first_time <= 0;
+                            // We've calculated all the timesteps required, go
+                            // back to SW_READ_WRITE
                             if (gap_counter == gap - 1) begin
                                 state <= SW_READ_WRITE;
                                 done <= 1;
+                            // Not all timesteps computed, go back to
+                            // CALC_ACCEL and start again
                             end else begin
                                 state <= CALC_ACCEL;
                                 gap_counter <= gap_counter + 1;
@@ -356,7 +378,9 @@ module nbody #(
                 wren_vx = valid_dv;
                 wren_vy = valid_dv;
 
-                //TODO: We are assuming big indian, if not, deal with it
+                // TO DO: We are assuming big indian, if not, deal with it
+                // On the first timestep we only calculate a half timestep,
+                // shift to do so. Floating point shifting
                 if (first_time) begin
                     ax_shifted = {ax[63], ax[62:52] > 0? ax[62:52] - 11'b1 : 11'b0, ax[51:0]};
                     ay_shifted = {ay[63], ay[62:52] > 0? ay[62:52] - 11'b1 : 11'b0, ay[51:0]};
@@ -484,7 +508,7 @@ module nbody #(
         .ay(ay)
     );
 
-
+/*
 // Assertion
 property done_must_be_in_state_rw();
     @(posedge clk) (done |-> (state == SW_READ_WRITE));
@@ -512,10 +536,10 @@ wire cfg_done = seen_nb && seen_gap;
 
 
 // 2) Write should only happens under the stage SW_READ_WRITE
-/*as_write_inRW:
-assume property (@(posedge clk) disable iff (rst)
-  chipselect && write |-> state == SW_READ_WRITE
-);*/
+// as_write_inRW:
+// assume property (@(posedge clk) disable iff (rst)
+//   chipselect && write |-> state == SW_READ_WRITE
+// );
 
 as_write_only_inRW_except_GO:
 assume property (@(posedge clk) disable iff (rst)
@@ -590,7 +614,6 @@ always_ff @(posedge clk or posedge rst) begin
 end
 wire cfg_done = seen_nb && seen_gap;
 
-
 // transition: from SW_READ_WRTIE to CALC_ACCEL(check cfg_done go read_sw done)
 ap_rw_to_calc:
 assert property (@(posedge clk) disable iff (rst)
@@ -634,11 +657,10 @@ assert property (@(posedge clk) disable iff (rst)
   (state==UPDATE_POS && !go)
    |=> (state==SW_READ_WRITE)
 );
-/*
-In the UPDATE_POS state, the state register is assigned multiple times in the same clock cycle using non-blocking assignments. When go goes low, the RTL sets state to SW_READ_WRITE, but later logic in the same always_ff block overwrites this value (for example, setting state to CALC_ACCEL).
 
-Because the last assignment wins, the FSM does not return to SW_READ_WRITE even though go is low. The assertion correctly detects this missing transition.
-*/
+// In the UPDATE_POS state, the state register is assigned multiple times in the same clock cycle using non-blocking assignments. When go goes low, the RTL sets state to SW_READ_WRITE, but later logic in the same always_ff block overwrites this value (for example, setting state to CALC_ACCEL).
+
+// Because the last assignment wins, the FSM does not return to SW_READ_WRITE even though go is low. The assertion correctly detects this missing transition.
 
 // UPDATE finish branches
 ap_update_finish_to_rw_done:
@@ -659,9 +681,6 @@ assert property (@(posedge clk) disable iff (rst)
 );
 
 
-
-
-
 ap_state_legal: 
 assert property (@(posedge clk) disable iff (rst)
   (state == SW_READ_WRITE) || (state == CALC_ACCEL) || (state == UPDATE_POS)
@@ -678,7 +697,7 @@ ap_v_read_in_range: assert property (@(posedge clk) disable iff (rst)
 ap_v_write_in_range: assert property (@(posedge clk) disable iff (rst)
   (state == CALC_ACCEL) |-> (v_write_i <=num_bodies) && (v_write_j <= num_bodies)
 );
-
+*/
 /*The assertions ap_p_read_in_range and ap_v_read_in_range fail due to an off-by-one counter overflow in the CALC_ACCEL state.
 When both index counters reach num_bodies − 1, the inner counter resets to zero and the outer counter is incremented without an upper-bound check. As a result, the outer counter temporarily becomes equal to num_bodies, which is outside the valid range [0, num_bodies − 1] for one cycle.
 

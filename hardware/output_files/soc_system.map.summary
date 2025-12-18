@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Thu May  8 14:29:52 2025
+Analysis & Synthesis Status : Successful - Thu Dec 18 00:20:00 2025
 Quartus Prime Version : 21.1.0 Build 842 10/21/2021 SJ Lite Edition
 Revision Name : soc_system
 Top-level Entity Name : soc_system_top
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 25412
+Total registers : 13830
 Total pins : 362
 Total virtual pins : 0
-Total block memory bits : 292,554
+Total block memory bits : 292,706
 Total DSP Blocks : 37
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0

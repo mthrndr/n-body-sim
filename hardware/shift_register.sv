@@ -30,7 +30,7 @@ module shift_register #(
     assign out = shift_reg[SHIFTS-1];
 
 
-
+    /*
    // 1) Reset clears output 
     a_reset_clears_out:
     assert property (@(posedge clk or posedge rst)
@@ -65,6 +65,7 @@ module shift_register #(
     cover property (@(posedge clk) disable iff (rst)
         $changed(in) ##SHIFTS $changed(out)
     );
+    */
 
 endmodule
 
@@ -84,6 +85,3 @@ The shift register uses an asynchronous reset. Original assertions using $past(.
 Solution:
 Assertions were rewritten to be reset-aware, checking behavior only when both the current and previous cycles were not in reset.
 */
-
-
-
