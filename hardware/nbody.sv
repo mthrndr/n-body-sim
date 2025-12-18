@@ -99,7 +99,7 @@ module nbody #(
     logic [DATA_WIDTH-1:0] ax, ay;
     logic [DATA_WIDTH-1:0] ax_shifted, ay_shifted;
 
-    logic [BODY_ADDR_WIDTH-1:0] p_read_i, p_read_j, v_read_i, v_read_j, v_write_i, v_write_j;
+    logic [BODY_ADDR_WIDTH-1:0] p_read_i, p_read_j, v_read_j, v_write_i, v_write_j;
     logic valid_accl, valid_dv;
 
     logic [DATA_WIDTH-1:0] x_output_1, y_output_1, x_output_2, y_output_2; 
@@ -176,7 +176,6 @@ module nbody #(
                             state_1_timer <= 0;
                             v_write_i <= 0;
                             v_write_j <= 0;
-                            v_read_i  <= 0;
                             v_read_j  <= 0;
                             p_read_i  <= 0;
                             p_read_j  <= 0;
@@ -207,7 +206,6 @@ module nbody #(
                         state_1_timer <= 0;
                         v_write_i <= 0;
                         v_write_j <= 0;
-                        v_read_i  <= 0;
                         v_read_j  <= 0;
                         p_read_i  <= 0;
                         p_read_j  <= 0;
@@ -243,8 +241,6 @@ module nbody #(
                         // Loop over
                         if (v_read_j == num_bodies - 1) begin
                             v_read_j <= 0;
-                            // Check if we can remove v_read_i
-                            v_read_i <= v_read_i + 9'b1;
                         end
 
                         // Once state_1_timer is equal to the accl and add
@@ -684,7 +680,7 @@ ap_p_read_in_range: assert property (@(posedge clk) disable iff (rst)
 );
 
 ap_v_read_in_range: assert property (@(posedge clk) disable iff (rst)
-  (state == CALC_ACCEL) |-> (v_read_i <=num_bodies) && (v_read_j <= num_bodies)
+  (state == CALC_ACCEL) |-> (v_read_j <= num_bodies)
 );
 
 ap_v_write_in_range: assert property (@(posedge clk) disable iff (rst)
