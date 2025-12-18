@@ -9,8 +9,7 @@ set HOME_DIR ".."
 
 # analyze -verilog
 analyze -sv \
-  $HOME_DIR/shift_register.sv \
-\
+  $HOME_DIR/shift_register.sv
 
 
 elaborate -top shift_register

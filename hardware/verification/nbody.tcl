@@ -23,7 +23,10 @@ analyze -sv \
 set blackbox_list [list "Mult" "InvSqrt" "AddSub" "RAM_DISP" "RAM" "RAM2"]
   
 # Elaborate design and properties
-elaborate -top nbody -bbox_m "$blackbox_list"
+elaborate -top nbody -bbox_m "$blackbox_list" \
+    -parameter AddTime 1 \
+    -parameter MultTime 1 \
+    -parameter InvSqrtTime 1 \
 
 # Set up Clocks and Resets
 clock clk 

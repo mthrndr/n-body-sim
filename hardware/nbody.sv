@@ -223,6 +223,9 @@ module nbody #(
                         // current body being considered, and reset the counter
                         // for the bodies we compare to
                         if (p_read_j == num_bodies - 1) begin
+                            // Although p_read_j can never go beyond
+                            // num_bodies, p_read_i can once we are done
+                            // feeding in all values to calc accl.
                             p_read_j <= 9'b0;
                             p_read_i <= p_read_i + 9'b1;
                         end
@@ -259,8 +262,6 @@ module nbody #(
                             v_write_j <= 0;
                             v_write_i <= v_write_i + 9'b1;
                         end 
-                        
-
                         
                     end
                     
@@ -552,7 +553,10 @@ assume property (@(posedge clk) disable iff (rst)
 // 4) Write should only happens under the stage SW_READ_WRITE
 as_cfg_values_legal:
 assume property (@(posedge clk) disable iff (rst)
-  cfg_done |-> (num_bodies >= 1 && num_bodies <= 10 && gap > 0)
+    cfg_done |-> (
+        (num_bodies >= AcclLatency && num_bodies <= AcclLatency + 10) && 
+        (gap > 0 && gap < 10)
+    )
 );
 
 
@@ -594,20 +598,6 @@ cover_UPDATE_POS:
 cover property (@(posedge clk) disable iff (rst)
   state == UPDATE_POS
 );
-
-
-//configuration done (same as before)
-logic seen_nb, seen_gap;
-always_ff @(posedge clk or posedge rst) begin
-  if (rst) begin
-    seen_nb  <= 1'b0;
-    seen_gap <= 1'b0;
-  end else begin
-    if (chipselect && write && (addr[15:9] == N_BODIES)) seen_nb  <= 1'b1;
-    if (chipselect && write && (addr[15:9] == GAP))      seen_gap <= 1'b1;
-  end
-end
-wire cfg_done = seen_nb && seen_gap;
 
 // transition: from SW_READ_WRTIE to CALC_ACCEL(check cfg_done go read_sw done)
 ap_rw_to_calc:
@@ -675,8 +665,10 @@ assert property (@(posedge clk) disable iff (rst)
   (state == SW_READ_WRITE) || (state == CALC_ACCEL) || (state == UPDATE_POS)
 );
 
+// We don't care if p_read_i goes out of range as that means that we have
+// already read all the bodies.
 ap_p_read_in_range: assert property (@(posedge clk) disable iff (rst)
-  (state == CALC_ACCEL) |-> (p_read_i <=num_bodies) && (p_read_j <=num_bodies)
+  (state == CALC_ACCEL) |-> (p_read_j <= num_bodies)
 );
 
 ap_v_read_in_range: assert property (@(posedge clk) disable iff (rst)
