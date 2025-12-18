@@ -30,7 +30,6 @@ module shift_register #(
     assign out = shift_reg[SHIFTS-1];
 
 
-    /*
    // 1) Reset clears output 
     a_reset_clears_out:
     assert property (@(posedge clk or posedge rst)
@@ -65,7 +64,6 @@ module shift_register #(
     cover property (@(posedge clk) disable iff (rst)
         $changed(in) ##SHIFTS $changed(out)
     );
-    */
 
 endmodule
 

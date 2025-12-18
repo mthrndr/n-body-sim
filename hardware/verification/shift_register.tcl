@@ -5,7 +5,7 @@
 # ----------------------------------------
 clear -all
 
-set HOME_DIR "."
+set HOME_DIR ".."
 
 # analyze -verilog
 analyze -sv \

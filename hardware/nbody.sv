@@ -278,7 +278,7 @@ module nbody #(
                         state <= SW_READ_WRITE;
                     end
                     // Data has begun streaming out of adder
-                    if (state_2_read == AddTime + 1) begin
+                    else if (state_2_read == AddTime + 1) begin
                         // finished the startup time, now we can start writing things back
                         state_2_write_enable <= 1'b1;
                     end else if (state_2_write_enable) begin
@@ -508,7 +508,6 @@ module nbody #(
         .ay(ay)
     );
 
-/*
 // Assertion
 property done_must_be_in_state_rw();
     @(posedge clk) (done |-> (state == SW_READ_WRITE));
@@ -654,23 +653,17 @@ assert property (@(posedge clk) disable iff (rst)
 // transition: UPDATE to RW on !go
 ap_update_abort:
 assert property (@(posedge clk) disable iff (rst)
-  (state==UPDATE_POS && !go)
-   |=> (state==SW_READ_WRITE)
+  (state==UPDATE_POS && !go) |=> (state==SW_READ_WRITE)
 );
-
-// In the UPDATE_POS state, the state register is assigned multiple times in the same clock cycle using non-blocking assignments. When go goes low, the RTL sets state to SW_READ_WRITE, but later logic in the same always_ff block overwrites this value (for example, setting state to CALC_ACCEL).
-
-// Because the last assignment wins, the FSM does not return to SW_READ_WRITE even though go is low. The assertion correctly detects this missing transition.
 
 // UPDATE finish branches
 ap_update_finish_to_rw_done:
 assert property (@(posedge clk) disable iff (rst)
   (state==UPDATE_POS && state_2_write_enable &&
-   (state_2_pos_write == num_bodies-1) &&
+   (state_2_pos_write == num_bodies-1) && go &&
    (gap_counter == gap-1))
   |=> (state==SW_READ_WRITE && done)
 );
-
 
 // UPDATE stays UPDATE otherwise goes to SW if !go 
 ap_update_stays_update_when_not_finished:
@@ -697,7 +690,7 @@ ap_v_read_in_range: assert property (@(posedge clk) disable iff (rst)
 ap_v_write_in_range: assert property (@(posedge clk) disable iff (rst)
   (state == CALC_ACCEL) |-> (v_write_i <=num_bodies) && (v_write_j <= num_bodies)
 );
-*/
+
 /*The assertions ap_p_read_in_range and ap_v_read_in_range fail due to an off-by-one counter overflow in the CALC_ACCEL state.
 When both index counters reach num_bodies − 1, the inner counter resets to zero and the outer counter is incremented without an upper-bound check. As a result, the outer counter temporarily becomes equal to num_bodies, which is outside the valid range [0, num_bodies − 1] for one cycle.
 

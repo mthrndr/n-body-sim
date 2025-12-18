@@ -6,3 +6,4 @@ hardware/output_files/*
 hardware/db/*
 hardware/incremental_db/*
 hardware/simulation/*
+hardware/verification/jgproject/*
